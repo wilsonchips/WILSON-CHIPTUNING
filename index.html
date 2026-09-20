@@ -2,16 +2,13 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Wilson ChipTuning | Engineering & Reflash</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Wilson Chip Tuning | Engineering & Reflash</title>
   <meta name="description" content="Calibración y reprogramación avanzada de ECU y TCU en Puerto Rico y Miami. Más de 30 años de experiencia.">
   
-  <!-- Tipografía Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  
-  <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
@@ -34,6 +31,7 @@
       padding: 0;
       box-sizing: border-box;
       scroll-behavior: smooth;
+      -webkit-tap-highlight-color: transparent;
     }
 
     body {
@@ -48,17 +46,20 @@
     .topbar {
       background: #060709;
       border-bottom: 1px solid var(--border-color);
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       padding: 8px 5%;
       display: flex;
       justify-content: space-between;
       align-items: center;
       color: var(--text-muted);
+      flex-wrap: wrap;
+      gap: 8px;
     }
     .topbar-links, .topbar-socials {
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 15px;
+      flex-wrap: wrap;
     }
     .topbar a {
       color: var(--text-muted);
@@ -69,15 +70,15 @@
       color: var(--accent-cyan);
     }
 
-    /* Header / Nav */
+    /* Header */
     header {
       position: sticky;
       top: 0;
       z-index: 1000;
-      background: rgba(9, 10, 13, 0.94);
+      background: rgba(9, 10, 13, 0.96);
       backdrop-filter: blur(10px);
       border-bottom: 1px solid var(--border-color);
-      padding: 14px 5%;
+      padding: 12px 5%;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -85,7 +86,7 @@
     .brand-logo {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       text-decoration: none;
     }
     .logo-badge {
@@ -98,7 +99,7 @@
     }
     .logo-main-text {
       font-family: var(--font-display);
-      font-size: 1.25rem;
+      font-size: clamp(1rem, 4vw, 1.25rem);
       font-weight: 800;
       color: #ffffff;
       letter-spacing: 1px;
@@ -108,7 +109,7 @@
     }
     .logo-main-text .gear-o {
       color: var(--accent-red);
-      font-size: 1rem;
+      font-size: 0.9em;
       animation: spinGear 12s linear infinite;
     }
     @keyframes spinGear {
@@ -116,7 +117,7 @@
     }
     .logo-sub-text {
       font-family: var(--font-display);
-      font-size: 0.65rem;
+      font-size: clamp(0.55rem, 2.5vw, 0.65rem);
       font-weight: 700;
       color: var(--accent-blue);
       letter-spacing: 2px;
@@ -126,26 +127,77 @@
       margin-top: 2px;
     }
 
-    nav {
+    /* Menú escritorio */
+    nav.desktop-nav {
       display: flex;
       align-items: center;
-      gap: 25px;
+      gap: 22px;
     }
-    nav a {
+    nav.desktop-nav a {
       color: var(--text-main);
       text-decoration: none;
       font-weight: 600;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       transition: color 0.2s;
     }
-    nav a:hover {
+    nav.desktop-nav a:hover {
       color: var(--accent-cyan);
     }
+
+    /* Botón Hamburguesa Móvil */
+    .menu-toggle {
+      display: none;
+      background: transparent;
+      border: 1px solid var(--border-color);
+      color: #fff;
+      font-size: 1.3rem;
+      padding: 8px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    /* Menú lateral desplegable para móvil */
+    .mobile-nav {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 280px;
+      height: 100vh;
+      background: #0d0f14;
+      border-left: 1px solid var(--border-color);
+      z-index: 2000;
+      display: flex;
+      flex-direction: column;
+      padding: 30px 20px;
+      gap: 20px;
+      box-shadow: -10px 0 30px rgba(0,0,0,0.8);
+      transition: right 0.3s ease;
+    }
+    .mobile-nav.active {
+      right: 0;
+    }
+    .mobile-nav-close {
+      align-self: flex-end;
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+    .mobile-nav a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 1.1rem;
+      font-weight: 600;
+      padding: 10px 0;
+      border-bottom: 1px solid #1a1e28;
+    }
+
     .btn-cta {
       background: linear-gradient(90deg, var(--accent-red), #e60000);
       color: #fff;
-      padding: 10px 22px;
-      border-radius: 4px;
+      padding: 12px 22px;
+      border-radius: 6px;
       text-decoration: none;
       font-weight: 700;
       font-family: var(--font-display);
@@ -156,26 +208,23 @@
       cursor: pointer;
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 8px;
       box-shadow: 0 4px 15px rgba(255, 43, 43, 0.35);
       transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .btn-cta:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(255, 43, 43, 0.5);
     }
 
     /* Hero Section */
     .hero {
       position: relative;
-      padding: 110px 5% 90px;
+      padding: clamp(60px, 8vw, 100px) 5% 70px;
       background: radial-gradient(circle at 80% 20%, rgba(0, 136, 255, 0.12), transparent 45%),
                   radial-gradient(circle at 20% 80%, rgba(255, 43, 43, 0.1), transparent 50%),
                   #090a0d;
       display: grid;
       grid-template-columns: 1.2fr 0.8fr;
       align-items: center;
-      gap: 50px;
+      gap: 40px;
       border-bottom: 1px solid var(--border-color);
     }
     .hero-badge {
@@ -191,12 +240,12 @@
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 1px;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
     }
     .hero h1 {
       font-family: var(--font-display);
-      font-size: 3.2rem;
-      line-height: 1.15;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      line-height: 1.2;
       font-weight: 800;
       margin-bottom: 20px;
       text-transform: uppercase;
@@ -213,96 +262,71 @@
     }
     .hero p {
       color: var(--text-muted);
-      font-size: 1.15rem;
-      margin-bottom: 35px;
+      font-size: clamp(0.95rem, 2vw, 1.15rem);
+      margin-bottom: 30px;
       max-width: 600px;
     }
     .hero-actions {
       display: flex;
-      gap: 18px;
+      gap: 14px;
       flex-wrap: wrap;
     }
     .btn-secondary {
       background: #171b24;
       border: 1px solid var(--border-color);
       color: #fff;
-      padding: 10px 22px;
-      border-radius: 4px;
+      padding: 12px 22px;
+      border-radius: 6px;
       text-decoration: none;
       font-weight: 700;
       font-family: var(--font-display);
       text-transform: uppercase;
       letter-spacing: 1px;
       font-size: 0.85rem;
-      transition: all 0.2s;
-    }
-    .btn-secondary:hover {
-      background: #232733;
-      border-color: #3b4257;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
     }
 
-    /* Hero Chip Graphics Card */
+    /* Microchip Preview Card */
     .hero-chip-graphic {
       background: #12141a;
       border: 1px solid #232733;
       border-radius: 12px;
-      padding: 30px;
-      position: relative;
+      padding: 24px;
       box-shadow: 0 20px 40px rgba(0,0,0,0.5);
     }
     .chip-preview {
       border: 2px solid #2a3142;
       border-radius: 8px;
       background: #0b0d12;
-      padding: 24px;
-      position: relative;
-    }
-    .chip-pins-top, .chip-pins-bottom {
-      display: flex;
-      justify-content: space-around;
-      position: absolute;
-      width: 90%;
-      left: 5%;
-    }
-    .chip-pins-top { top: -10px; }
-    .chip-pins-bottom { bottom: -10px; }
-    .pin {
-      width: 6px;
-      height: 10px;
-      background: #475569;
-      border-radius: 2px;
-    }
-    .chip-details {
+      padding: 20px;
       text-align: center;
-      padding: 20px 0;
     }
     .chip-code {
-      font-family: 'Courier New', monospace;
+      font-family: monospace;
       color: var(--accent-cyan);
-      font-size: 0.9rem;
-      margin-bottom: 8px;
+      font-size: 0.85rem;
+      margin-bottom: 6px;
     }
 
     /* Stats Bar */
     .stats-bar {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 25px;
-      padding: 40px 5%;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 20px;
+      padding: 30px 5%;
       background: #0d0f14;
       border-bottom: 1px solid var(--border-color);
     }
     .stat-item {
       text-align: center;
-      padding: 15px;
-      border-right: 1px solid #1c212d;
-    }
-    .stat-item:last-child {
-      border-right: none;
+      padding: 10px;
     }
     .stat-number {
       font-family: var(--font-display);
-      font-size: 2.5rem;
+      font-size: clamp(2rem, 4vw, 2.5rem);
       font-weight: 800;
       color: #fff;
     }
@@ -310,21 +334,21 @@
       color: var(--accent-red);
     }
     .stat-label {
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       color: var(--text-muted);
       text-transform: uppercase;
       font-weight: 600;
       letter-spacing: 1px;
     }
 
-    /* Section Global */
+    /* Sections General */
     section {
-      padding: 85px 5%;
+      padding: clamp(50px, 8vw, 85px) 5%;
     }
     .section-title-wrap {
       text-align: center;
       max-width: 750px;
-      margin: 0 auto 55px;
+      margin: 0 auto 40px;
     }
     .section-subtitle {
       color: var(--accent-blue);
@@ -333,12 +357,12 @@
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 2px;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
       display: block;
     }
     .section-title {
       font-family: var(--font-display);
-      font-size: 2.4rem;
+      font-size: clamp(1.8rem, 4vw, 2.4rem);
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 1px;
@@ -347,47 +371,46 @@
     /* Services Grid */
     .services-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 28px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
     }
     .service-card {
       background: var(--bg-card);
       border: 1px solid var(--border-color);
       border-radius: 8px;
-      padding: 35px 28px;
+      padding: 28px 22px;
       transition: all 0.3s;
-      position: relative;
     }
     .service-card:hover {
       background: var(--bg-card-hover);
       border-color: var(--accent-blue);
-      transform: translateY(-5px);
+      transform: translateY(-4px);
     }
     .service-icon {
-      font-size: 2.2rem;
+      font-size: 2rem;
       color: var(--accent-red);
-      margin-bottom: 20px;
+      margin-bottom: 15px;
     }
     .service-card h3 {
       font-family: var(--font-display);
-      font-size: 1.35rem;
+      font-size: 1.25rem;
       font-weight: 700;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
     .service-card p {
       color: var(--text-muted);
-      font-size: 0.95rem;
-      margin-bottom: 18px;
+      font-size: 0.9rem;
+      margin-bottom: 15px;
     }
     .service-points {
       list-style: none;
       border-top: 1px solid #1f2533;
-      padding-top: 15px;
+      padding-top: 12px;
     }
     .service-points li {
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       color: #ccd1db;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
       display: flex;
       align-items: center;
       gap: 8px;
@@ -397,7 +420,7 @@
       font-size: 0.75rem;
     }
 
-    /* Locations Section */
+    /* Locations */
     .locations-section {
       background: #0b0d12;
       border-top: 1px solid var(--border-color);
@@ -405,51 +428,47 @@
     }
     .locations-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
     }
     .location-box {
       background: var(--bg-card);
       border: 1px solid var(--border-color);
       border-radius: 8px;
-      padding: 24px;
+      padding: 20px;
       text-align: center;
-      transition: border-color 0.2s;
-    }
-    .location-box:hover {
-      border-color: var(--accent-red);
     }
     .location-box i {
-      font-size: 2rem;
+      font-size: 1.8rem;
       color: var(--accent-red);
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
     .location-box h4 {
       font-family: var(--font-display);
-      font-size: 1.25rem;
-      margin-bottom: 6px;
+      font-size: 1.15rem;
+      margin-bottom: 4px;
     }
     .location-box p {
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       color: var(--text-muted);
     }
 
-    /* Form Section */
+    /* Form */
     .contact-form-section {
       background: radial-gradient(circle at 50% 10%, #171b24, #090a0d 65%);
     }
     .form-container {
-      max-width: 800px;
+      max-width: 750px;
       margin: 0 auto;
       background: var(--bg-card);
       border: 1px solid var(--border-color);
       border-radius: 10px;
-      padding: 40px;
+      padding: clamp(20px, 4vw, 35px);
     }
     .form-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 20px;
+      gap: 16px;
     }
     .form-group-full {
       grid-column: 1 / -1;
@@ -458,7 +477,7 @@
       display: block;
       font-size: 0.85rem;
       font-weight: 600;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
       color: #e1e4ea;
     }
     .form-group input, .form-group select, .form-group textarea {
@@ -470,101 +489,109 @@
       border-radius: 6px;
       font-family: inherit;
       font-size: 0.95rem;
-      transition: border-color 0.2s;
-    }
-    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
-      border-color: var(--accent-blue);
-      outline: none;
     }
 
     /* Footer */
     footer {
       background: #050608;
       border-top: 1px solid var(--border-color);
-      padding: 60px 5% 25px;
+      padding: 50px 5% 25px;
     }
     .footer-grid {
       display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1.5fr;
-      gap: 40px;
-      margin-bottom: 45px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 30px;
+      margin-bottom: 35px;
     }
     .footer-col h4 {
       font-family: var(--font-display);
-      font-size: 1.1rem;
-      margin-bottom: 20px;
+      font-size: 1.05rem;
+      margin-bottom: 15px;
       color: #fff;
       text-transform: uppercase;
-      letter-spacing: 1px;
     }
     .footer-col ul {
       list-style: none;
     }
     .footer-col ul li {
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
     .footer-col ul a {
       color: var(--text-muted);
       text-decoration: none;
-      font-size: 0.9rem;
-      transition: color 0.2s;
-    }
-    .footer-col ul a:hover {
-      color: var(--accent-cyan);
+      font-size: 0.85rem;
     }
     .footer-bottom {
       border-top: 1px solid #191c24;
-      padding-top: 25px;
+      padding-top: 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       color: #717887;
       flex-wrap: wrap;
-      gap: 15px;
+      gap: 10px;
     }
 
-    /* Floating WhatsApp Button */
+    /* Botón flotante WhatsApp */
     .whatsapp-floating {
       position: fixed;
-      bottom: 28px;
-      right: 28px;
+      bottom: 20px;
+      right: 20px;
       background: #25d366;
       color: #fff;
-      width: 62px;
-      height: 62px;
+      width: 56px;
+      height: 56px;
       border-radius: 50%;
       display: flex;
       justify-content: center;
       align-items: center;
-      font-size: 32px;
-      box-shadow: 0 6px 25px rgba(37, 211, 102, 0.45);
+      font-size: 30px;
+      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.45);
       z-index: 9999;
       text-decoration: none;
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-    .whatsapp-floating:hover {
-      transform: scale(1.1);
-      box-shadow: 0 8px 30px rgba(37, 211, 102, 0.6);
     }
 
-    @media (max-width: 900px) {
-      .topbar { flex-direction: column; gap: 8px; text-align: center; }
-      .hero { grid-template-columns: 1fr; padding-top: 50px; }
-      .footer-grid { grid-template-columns: 1fr; }
-      .form-grid { grid-template-columns: 1fr; }
-      nav { display: none; }
+    /* Adaptación específica para móviles */
+    @media (max-width: 820px) {
+      .topbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      nav.desktop-nav {
+        display: none;
+      }
+      .menu-toggle {
+        display: block;
+      }
+      .hero {
+        grid-template-columns: 1fr;
+        padding-top: 40px;
+      }
+      .hero-actions {
+        flex-direction: column;
+      }
+      .hero-actions a {
+        width: 100%;
+      }
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- Top Contact Bar -->
+  <!-- Topbar -->
   <div class="topbar">
     <div class="topbar-links">
       <span><i class="fa-solid fa-clock"></i> Lun-Vie 7am-7pm | Sáb 7am-12pm</span>
-      <span><i class="fa-solid fa-envelope"></i> <a href="mailto:wilsonchips@yahoo.com">wilsonchips@yahoo.com</a></span>
       <span><i class="fa-solid fa-phone"></i> <a href="tel:7878681351">787-868-1351</a></span>
+      <span><i class="fa-solid fa-envelope"></i> <a href="mailto:wilsonchips@yahoo.com">wilsonchips@yahoo.com</a></span>
     </div>
     <div class="topbar-socials">
       <a href="https://instagram.com/wilson_chip_tuning" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i> Instagram</a>
@@ -577,46 +604,55 @@
     <a href="#" class="brand-logo">
       <div class="logo-badge">
         <div class="logo-main-text">
-          WILS<i class="fa-solid fa-gear gear-o"></i>N CHIPTUNING
+          WILS<i class="fa-solid fa-gear gear-o"></i>N CHIP TUNING
         </div>
         <div class="logo-sub-text">ENGINEERING & REFLASH</div>
       </div>
     </a>
-    <nav>
+
+    <nav class="desktop-nav">
       <a href="#servicios">Servicios</a>
       <a href="#cobertura">Ubicaciones</a>
-      <a href="#nosotros">Nosotros</a>
       <a href="#cotizacion" class="btn-cta"><i class="fa-solid fa-bolt"></i> Cotizar Ahora</a>
     </nav>
+
+    <!-- Botón Menú Móvil -->
+    <button class="menu-toggle" id="openMenu" aria-label="Abrir menú">
+      <i class="fa-solid fa-bars"></i>
+    </button>
   </header>
+
+  <!-- Menú lateral móvil -->
+  <div class="mobile-nav" id="mobileMenu">
+    <button class="mobile-nav-close" id="closeMenu">&times;</button>
+    <a href="#servicios" class="nav-item">Servicios</a>
+    <a href="#cobertura" class="nav-item">Ubicaciones</a>
+    <a href="#cotizacion" class="nav-item">Cotizar</a>
+    <a href="https://wa.me/17878681351?text=Hola,%20quisiera%20cotizar%20un%20servicio" class="btn-cta" style="margin-top: 20px;">
+      <i class="fa-brands fa-whatsapp"></i> Chat WhatsApp
+    </a>
+  </div>
 
   <!-- Hero Section -->
   <section class="hero">
     <div>
-      <div class="hero-badge"><i class="fa-solid fa-microchip"></i> Calibración & Remapeo Profesional</div>
-      <h1><span>Ingeniería Electrónica y Calibración</span> <span class="highlight">de Alto Nivel</span></h1>
-      <p>Optimizamos la potencia, torque y consumo de tu vehículo mediante remapeo de ECU y TCU a medida. Más de 30 años de experiencia técnica automotriz garantizando fiabilidad y respuesta inmediata.</p>
+      <div class="hero-badge"><i class="fa-solid fa-microchip"></i> Calibración Profesional</div>
+      <h1><span>Ingeniería Electrónica</span> <span class="highlight">de Alto Nivel</span></h1>
+      <p>Optimizamos potencia, torque y consumo mediante remapeo de ECU y TCU a la medida. Más de 30 años de experiencia técnica automotriz garantizando fiabilidad y respuesta inmediata.</p>
       <div class="hero-actions">
         <a href="#cotizacion" class="btn-cta"><i class="fa-solid fa-gauge-high"></i> Solicitar Cotización</a>
-        <a href="https://wa.me/17878681351?text=Hola,%20deseo%20cotizar%20un%20servicio%20de%20tuning" class="btn-secondary" target="_blank"><i class="fa-brands fa-whatsapp"></i> WhatsApp Directo</a>
+        <a href="https://wa.me/17878681351?text=Hola,%20deseo%20cotizar%20un%20servicio" class="btn-secondary" target="_blank">
+          <i class="fa-brands fa-whatsapp"></i> WhatsApp Directo
+        </a>
       </div>
     </div>
 
-    <!-- Microchip Vector Graphic -->
     <div class="hero-chip-graphic">
       <div class="chip-preview">
-        <div class="chip-pins-top">
-          <div class="pin"></div><div class="pin"></div><div class="pin"></div><div class="pin"></div><div class="pin"></div><div class="pin"></div><div class="pin"></div>
-        </div>
-        <div class="chip-details">
-          <div class="chip-code">// FLASH PERFORMANCE CORE</div>
-          <h2 style="font-family: var(--font-display); font-size: 1.6rem; color: #fff; margin-bottom: 5px;">WILSON CHIPTUNING</h2>
-          <div style="font-size: 0.8rem; color: var(--accent-red); font-weight: 700; letter-spacing: 2px;">ENGINEERING & REFLASH</div>
-          <p style="font-size: 0.9rem; color: #9ba1b0; margin-top: 15px;">Puerto Rico & Miami • Soporte Local y Remoto</p>
-        </div>
-        <div class="chip-pins-bottom">
-          <div class="pin"></div><div class="pin"></div><div class="pin"></div><div class="pin"></div><div class="pin"></div><div class="pin"></div><div class="pin"></div>
-        </div>
+        <div class="chip-code">// PERFORMANCE FLASH CORE</div>
+        <h2 style="font-family: var(--font-display); font-size: 1.4rem; color: #fff; margin-bottom: 4px;">WILSON CHIP TUNING</h2>
+        <div style="font-size: 0.75rem; color: var(--accent-red); font-weight: 700; letter-spacing: 2px;">ENGINEERING & REFLASH</div>
+        <p style="font-size: 0.85rem; color: #9ba1b0; margin-top: 12px;">Aguada • Ponce • Caguas • Miami</p>
       </div>
     </div>
   </section>
@@ -625,87 +661,83 @@
   <div class="stats-bar">
     <div class="stat-item">
       <div class="stat-number">+30<span>Años</span></div>
-      <div class="stat-label">Experiencia en Programación</div>
+      <div class="stat-label">Experiencia en Sistemas</div>
     </div>
     <div class="stat-item">
       <div class="stat-number">100<span>%</span></div>
-      <div class="stat-label">Archivos a la Medida</div>
+      <div class="stat-label">Mapas a la Medida</div>
     </div>
     <div class="stat-item">
       <div class="stat-number">4<span>Sedes</span></div>
-      <div class="stat-label">Aguada, Ponce, Caguas, Miami</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-number">24<span>/7</span></div>
-      <div class="stat-label">Soporte Técnico Especializado</div>
+      <div class="stat-label">PR & Florida</div>
     </div>
   </div>
 
   <!-- Services -->
   <section id="servicios">
     <div class="section-title-wrap">
-      <span class="section-subtitle">Nuestras Capacidades</span>
-      <h2 class="section-title">Servicios de Calibración Especializada</h2>
+      <span class="section-subtitle">Capacidades Técnicas</span>
+      <h2 class="section-title">Servicios de Calibración</h2>
     </div>
 
     <div class="services-grid">
       <div class="service-card">
         <i class="fa-solid fa-microchip service-icon"></i>
-        <h3>ECU Remapping (Stage 1 , 2 & 3)</h3>
-        <p>Ajuste individual de tablas de combustible (AFR), avance de ignición, sobrealimentación (boost) y límites de RPM con base en datos reales.</p>
+        <h3>ECU Remapping (Stage 1 & 2)</h3>
+        <p>Ajuste individual de mezcla aire-combustible (AFR), avance de ignición, sobrealimentación y límites de revoluciones.</p>
         <ul class="service-points">
-          <li><i class="fa-solid fa-check"></i> Incremento sustancial de potencia y torque</li>
-          <li><i class="fa-solid fa-check"></i> Respuesta del acelerador sin retrasos</li>
+          <li><i class="fa-solid fa-check"></i> Mayor entrega de potencia y torque</li>
+          <li><i class="fa-solid fa-check"></i> Acelerador sin retrasos ni vacilaciones</li>
         </ul>
       </div>
 
       <div class="service-card">
         <i class="fa-solid fa-gears service-icon"></i>
         <h3>Calibración de TCU (Transmisión)</h3>
-        <p>Optimizamos la lógica de acople, reducción del tiempo entre cambios de marcha y modificación de limitadores de torque internos.</p>
+        <p>Optimización de puntos de cambio, cambios más rápidos y gestión eficiente del par motor.</p>
         <ul class="service-points">
-          <li><i class="fa-solid fa-check"></i> Cambios más precisos y directos</li>
-          <li><i class="fa-solid fa-check"></i> Mayor vida útil para cajas automáticas</li>
+          <li><i class="fa-solid fa-check"></i> Acoples precisos bajo aceleración</li>
+          <li><i class="fa-solid fa-check"></i> Cuidado de discos y embragues</li>
         </ul>
       </div>
 
       <div class="service-card">
         <i class="fa-solid fa-truck-ramp-box service-icon"></i>
-        <h3>Gestión y Control de Flotas</h3>
-        <p>Configuración de limitadores de velocidad para flotas de empresas, control de consumo de gasolina/diésel y límites de par motor.</p>
+        <h3>Control de Flotas Comerciales</h3>
+        <p>Configuración de limitadores de velocidad para control de flotas corporativas y optimización de consumo.</p>
         <ul class="service-points">
-          <li><i class="fa-solid fa-check"></i> Reducción de costos de mantenimiento</li>
-          <li><i class="fa-solid fa-check"></i> Mayor seguridad para flotas comerciales</li>
+          <li><i class="fa-solid fa-check"></i> Disminución de desgaste mecánico</li>
+          <li><i class="fa-solid fa-check"></i> Máxima seguridad operativa</li>
         </ul>
       </div>
 
       <div class="service-card">
         <i class="fa-solid fa-desktop service-icon"></i>
-        <h3>Bench & Boot Flashing / Clonación</h3>
-        <p>Lectura, respaldo de seguridad y programación en banco de módulos con protocolos de seguridad avanzados sin necesidad de abrir la unidad.</p>
+        <h3>Bench / Boot & Clonación</h3>
+        <p>Lectura y programación directa en banco de módulos con protección antituning avanzada.</p>
         <ul class="service-points">
-          <li><i class="fa-solid fa-check"></i> Recuperación de computadoras bloqueadas</li>
-          <li><i class="fa-solid fa-check"></i> Clonación 1:1 de módulos originales</li>
+          <li><i class="fa-solid fa-check"></i> Recuperación de ECUs bloqueadas</li>
+          <li><i class="fa-solid fa-check"></i> Clonación completa de datos</li>
         </ul>
       </div>
 
       <div class="service-card">
         <i class="fa-solid fa-chart-line service-icon"></i>
-        <h3>Datalogging & Diagnóstico</h3>
-        <p>Análisis en tiempo real de mezclas de combustión, presiones de riel, presiones de turbo y temperaturas de operación para garantizar seguridad.</p>
+        <h3>Datalogging en Tiempo Real</h3>
+        <p>Diagnóstico y registro en tiempo real de sensores críticos: mezclas, presión de combustible y knock.</p>
         <ul class="service-points">
-          <li><i class="fa-solid fa-check"></i> Validación de parámetros mecánicos</li>
-          <li><i class="fa-solid fa-check"></i> Monitoreo seguro de detonación (knock)</li>
+          <li><i class="fa-solid fa-check"></i> Validación de seguridad del motor</li>
+          <li><i class="fa-solid fa-check"></i> Ajustes exactos en dinamómetro o calle</li>
         </ul>
       </div>
 
       <div class="service-card">
         <i class="fa-solid fa-network-wired service-icon"></i>
-        <h3>Sintonización Remota</h3>
-        <p>Soporte de programación y ajuste de archivos a distancia para talleres y preparadores mediante enlaces seguros y herramientas pass-thru.</p>
+        <h3>Soporte y Tuning Remoto</h3>
+        <p>Asistencia de programación a distancia para talleres y clientes con interfaces compatibles.</p>
         <ul class="service-points">
-          <li><i class="fa-solid fa-check"></i> Asistencia técnica directa</li>
-          <li><i class="fa-solid fa-check"></i> Ajustes en dinamómetros aliados</li>
+          <li><i class="fa-solid fa-check"></i> Conexión remota rápida y segura</li>
+          <li><i class="fa-solid fa-check"></i> Cobertura en toda la isla y Florida</li>
         </ul>
       </div>
     </div>
@@ -714,7 +746,7 @@
   <!-- Locations -->
   <section id="cobertura" class="locations-section">
     <div class="section-title-wrap">
-      <span class="section-subtitle">Zonas Operativas</span>
+      <span class="section-subtitle">Puntos de Atención</span>
       <h2 class="section-title">Nuestras Ubicaciones</h2>
     </div>
 
@@ -722,73 +754,73 @@
       <div class="location-box">
         <i class="fa-solid fa-location-dot"></i>
         <h4>Aguada</h4>
-        <p>Sede principal y laboratorio de pruebas electrónicas.</p>
+        <p>Laboratorio y sede principal de programación.</p>
       </div>
       <div class="location-box">
         <i class="fa-solid fa-location-dot"></i>
         <h4>Ponce</h4>
-        <p>Atención programada y calibración en dinamómetro aliado.</p>
+        <p>Calibración y pruebas en dinamómetro aliado.</p>
       </div>
       <div class="location-box">
         <i class="fa-solid fa-location-dot"></i>
         <h4>Caguas</h4>
-        <p>Servicios móviles, diagnóstico y soporte para flotas.</p>
+        <p>Atención a flotas y diagnóstico móvil.</p>
       </div>
       <div class="location-box">
         <i class="fa-solid fa-location-dot"></i>
         <h4>Miami</h4>
-        <p>Soporte de programación, archivos a medida y flotas en Florida.</p>
+        <p>Soporte de archivos a medida y flotas en Florida.</p>
       </div>
     </div>
   </section>
 
-  <!-- Quote Form -->
+  <!-- Cotización -->
   <section id="cotizacion" class="contact-form-section">
     <div class="section-title-wrap">
-      <span class="section-subtitle">Contacto Inmediato</span>
-      <h2 class="section-title">Cotiza tu Calibración</h2>
+      <span class="section-subtitle">Evaluación Técnica</span>
+      <h2 class="section-title">Cotiza tu Vehículo</h2>
     </div>
 
     <div class="form-container">
-      <form id="quoteForm" onsubmit="event.preventDefault(); alert('¡Gracias Wilson! Tu solicitud ha sido preparada. Puedes enviarla directamente a nuestro WhatsApp o correo.');">
+      <form id="quoteForm">
         <div class="form-grid">
           <div class="form-group">
-            <label>Nombre y Apellido</label>
-            <input type="text" required placeholder="Ej. Carlos Rivera">
+            <label>Nombre Completo</label>
+            <input type="text" id="formName" required placeholder="Tu nombre">
           </div>
           <div class="form-group">
             <label>Teléfono o WhatsApp</label>
-            <input type="tel" required placeholder="787-000-0000">
+            <input type="tel" id="formPhone" inputmode="tel" required placeholder="787-000-0000">
           </div>
           <div class="form-group">
-            <label>Año del Vehículo</label>
-            <input type="text" required placeholder="Ej. 2021">
+            <label>Año</label>
+            <input type="text" id="formYear" required placeholder="Ej. 2021">
           </div>
           <div class="form-group">
             <label>Marca y Modelo</label>
-            <input type="text" required placeholder="Ej. Jeep Wrangler / Ford F-150">
+            <input type="text" id="formModel" required placeholder="Ej. Jeep Wrangler / Ford F-150">
           </div>
           <div class="form-group">
             <label>Motorización</label>
-            <input type="text" placeholder="Ej. 3.0L Turbo Diesel / 5.0L V8">
+            <input type="text" id="formEngine" placeholder="Ej. 3.0L Turbo Diesel / 5.0L V8">
           </div>
           <div class="form-group">
             <label>Servicio Deseado</label>
-            <select>
-              <option>Reprogramación de Motor (ECU Remap)</option>
-              <option>Calibración de Transmisión (TCU)</option>
-              <option>Limitador de Velocidad / Flotas</option>
-              <option>Bench Flashing / Clonación de Módulo</option>
-              <option>Diagnóstico y Datalogging</option>
+            <select id="formService">
+              <option value="ECU Remap">Reprogramación de Motor (ECU Remap)</option>
+              <option value="TCU Calibracion">Calibración de Transmisión (TCU)</option>
+              <option value="Limitador Flota">Limitador de Velocidad / Flota</option>
+              <option value="Bench / Clonacion">Bench Flashing / Clonación de Módulo</option>
+              <option value="Diagnostico">Diagnóstico y Datalogging</option>
             </select>
           </div>
           <div class="form-group form-group-full">
-            <label>Detalles o Modificaciones Actuales</label>
-            <textarea rows="4" placeholder="Indica si el vehículo tiene intake, escape, o si buscas un objetivo específico."></textarea>
+            <label>Modificaciones o Requerimiento Especial</label>
+            <textarea id="formNotes" rows="3" placeholder="Indica si tiene admisión, escape o si buscas un objetivo particular."></textarea>
           </div>
           <div class="form-group form-group-full">
-            <button type="submit" class="btn-cta" style="width: 100%; justify-content: center; padding: 14px;">
-              <i class="fa-solid fa-paper-plane"></i> Enviar Solicitud
+            <button type="submit" class="btn-cta" style="width: 100%;">
+              <i class="fa-solid fa-paper-plane"></i> Enviar por WhatsApp
             </button>
           </div>
         </div>
@@ -800,16 +832,16 @@
   <footer>
     <div class="footer-grid">
       <div class="footer-col">
-        <div class="logo-badge" style="display: inline-block; margin-bottom: 15px;">
-          <div class="logo-main-text" style="font-size: 1.1rem;">
-            WILS<i class="fa-solid fa-gear gear-o"></i>N CHIPTUNING
+        <div class="logo-badge" style="display: inline-block; margin-bottom: 12px;">
+          <div class="logo-main-text" style="font-size: 1.05rem;">
+            WILS<i class="fa-solid fa-gear gear-o"></i>N CHIP TUNING
           </div>
           <div class="logo-sub-text">ENGINEERING & REFLASH</div>
         </div>
-        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 15px;">
+        <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 12px;">
           Calibración electrónica y desarrollo de software automotriz para Puerto Rico y Estados Unidos.
         </p>
-        <div style="display: flex; gap: 15px;">
+        <div style="display: flex; gap: 14px;">
           <a href="https://facebook.com/wilsonchiptuning" target="_blank" style="color: #fff; font-size: 1.2rem;"><i class="fa-brands fa-facebook"></i></a>
           <a href="https://instagram.com/wilson_chip_tuning" target="_blank" style="color: #fff; font-size: 1.2rem;"><i class="fa-brands fa-instagram"></i></a>
           <a href="mailto:wilsonchips@yahoo.com" style="color: #fff; font-size: 1.2rem;"><i class="fa-solid fa-envelope"></i></a>
@@ -817,28 +849,19 @@
       </div>
 
       <div class="footer-col">
-        <h4>Enlaces Rápidos</h4>
-        <ul>
-          <li><a href="#servicios">Servicios de Calibración</a></li>
-          <li><a href="#cobertura">Ubicaciones</a></li>
-          <li><a href="#cotizacion">Solicitar Cotización</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-col">
         <h4>Horario</h4>
-        <p style="color: var(--text-muted); font-size: 0.9rem;">
+        <p style="color: var(--text-muted); font-size: 0.85rem;">
           <strong>Lunes a Viernes:</strong><br>7:00 AM - 7:00 PM<br><br>
           <strong>Sábados:</strong><br>7:00 AM - 12:00 PM
         </p>
       </div>
 
       <div class="footer-col">
-        <h4>Contacto Directo</h4>
-        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 8px;">
+        <h4>Contacto</h4>
+        <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 6px;">
           <i class="fa-solid fa-phone" style="color: var(--accent-red);"></i> 787-868-1351
         </p>
-        <p style="color: var(--text-muted); font-size: 0.9rem;">
+        <p style="color: var(--text-muted); font-size: 0.85rem;">
           <i class="fa-solid fa-envelope" style="color: var(--accent-blue);"></i> wilsonchips@yahoo.com
         </p>
       </div>
@@ -850,10 +873,54 @@
     </div>
   </footer>
 
-  <!-- Floating WhatsApp Button -->
+  <!-- Floating WhatsApp -->
   <a href="https://wa.me/17878681351?text=Hola,%20quisiera%20cotizar%20un%20servicio%20para%20mi%20vehículo" class="whatsapp-floating" target="_blank" rel="noopener" title="Escríbenos por WhatsApp">
     <i class="fa-brands fa-whatsapp"></i>
   </a>
+
+  <!-- Script interactivo móvil -->
+  <script>
+    const openMenu = document.getElementById('openMenu');
+    const closeMenu = document.getElementById('closeMenu');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const navItems = document.querySelectorAll('.nav-item');
+
+    openMenu.addEventListener('click', () => {
+      mobileMenu.classList.add('active');
+    });
+
+    closeMenu.addEventListener('click', () => {
+      mobileMenu.classList.remove('active');
+    });
+
+    navItems.forEach(item => {
+      item.addEventListener('click', () => {
+        mobileMenu.classList.remove('active');
+      });
+    });
+
+    // Enviar el formulario directamente a tu WhatsApp con los datos listos
+    document.getElementById('quoteForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('formName').value;
+      const phone = document.getElementById('formPhone').value;
+      const year = document.getElementById('formYear').value;
+      const model = document.getElementById('formModel').value;
+      const engine = document.getElementById('formEngine').value;
+      const service = document.getElementById('formService').value;
+      const notes = document.getElementById('formNotes').value;
+
+      const message = `Hola Wilson, quiero cotizar un servicio:%0A%0A` +
+                      `*Nombre:* ${encodeURIComponent(name)}%0A` +
+                      `*Teléfono:* ${encodeURIComponent(phone)}%0A` +
+                      `*Vehículo:* ${encodeURIComponent(year + ' ' + model)}%0A` +
+                      `*Motor:* ${encodeURIComponent(engine)}%0A` +
+                      `*Servicio:* ${encodeURIComponent(service)}%0A` +
+                      `*Notas:* ${encodeURIComponent(notes)}`;
+
+      window.open(`https://wa.me/17878681351?text=${message}`, '_blank');
+    });
+  </script>
 
 </body>
 </html>
